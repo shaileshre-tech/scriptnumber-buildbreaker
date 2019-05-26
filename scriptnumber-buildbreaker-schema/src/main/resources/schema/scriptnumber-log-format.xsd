@@ -1,0 +1,45 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           attributeFormDefault="unqualified"
+           targetNamespace="http://endeavour.aimia.com/schema/plugin/script-log"
+           elementFormDefault="qualified"
+           xmlns:rs="http://endeavour.aimia.com/schema/plugin/script-log">
+
+    <xs:element name="pluginReference">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="rs:cherryPickList" name="cherryPickList" minOccurs="0" maxOccurs="1" />
+                <xs:element type="rs:allBranchScriptList" name="allBranchScriptList" minOccurs="1" maxOccurs="1" />
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="application" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="cherryPickList">
+        <xs:sequence>
+            <xs:element type="rs:cherryPick" name="cherryPick" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="cherryPick">
+        <xs:sequence>
+            <xs:element type="xs:string" name="fromBranch" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:string" name="fromBranchCommitId" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:string" name="fromBranchScriptNumberList" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:string" name="toBranch" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="allBranchScriptList">
+        <xs:sequence>
+            <xs:element type="rs:branchScriptList" name="branchScriptList" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="branchScriptList">
+        <xs:sequence>
+            <xs:element type="xs:string" name="branch" minOccurs="1" maxOccurs="1" />
+            <xs:element type="xs:string" name="allScriptNumberList" minOccurs="1" maxOccurs="1" default=""/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
